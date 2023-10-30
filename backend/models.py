@@ -51,6 +51,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
     email = models.EmailField(_("e-mail address"), unique=True)
     company = models.CharField(
         max_length=30, verbose_name="Название компании", blank=True
@@ -60,7 +62,6 @@ class User(AbstractUser):
     username = models.CharField(
         _("username"),
         max_length=40,
-        unique=True,
         help_text=_(
             "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
         ),
